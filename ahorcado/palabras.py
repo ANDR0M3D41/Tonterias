@@ -1,5 +1,6 @@
 # Extrae las palabras de words.txt
-# Y genera una Lista con ellas
+# Genera una Lista con ellas
+# Y retorna una palabra aleatoria de la lista
 
 from random import randint
 

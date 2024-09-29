@@ -87,8 +87,10 @@ def game(word):
 
     user_word = user_word_create(len_word)
 
+    corrects = 0
+
     while lifes > 0:
-       
+        
         iterations = 0 # For Loop
 
         correct = 0
@@ -103,6 +105,8 @@ def game(word):
 
             if word[i] == char_user:
 
+                corrects += 1
+                
                 correct = 1
 
                 user_word[i] = char_user
@@ -120,9 +124,24 @@ def game(word):
                 firt_for = 0
 
         for i in user_word:
+            
             print(i, end=' ')
+        
+        if corrects == len_word:
+            
+            print("\n\nFelicidades Ganaste")
+            
+            break
 
         char_user = input("\nIntroduce una letra: ")
+        
+        if len(char_user) > 1:
+            
+            print("----------------------------------")
+            print("\n\nPor favor solo una letra\n\n")
+            print("----------------------------------")
+            
+            return game(word)
 
     print("La Palabra era: " + word)
 
