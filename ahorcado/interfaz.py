@@ -74,8 +74,9 @@ def user_word_create(lenght):
 
     return list_word
 
-        
 def game(word):
+
+    guessed_letters = []
 
     len_word = len(word) - 1
         
@@ -99,17 +100,49 @@ def game(word):
 
         print('\n\n')
         
+        for i in user_word:
+            
+            print(i, end=' ')
+        
+        char_user = input("\nIntroduce una letra: ")
+        
+        if len(char_user) > 1:
+            
+            print("----------------------------------")
+            print("\n\nPor favor solo una letra\n\n")
+            print("----------------------------------")
+            
+            continue
+        
         for i in range(0, len_word):
 
             iterations += 1 # Here Iterations
 
             if word[i] == char_user:
 
-                corrects += 1
-                
-                correct = 1
+                guessed = 0
 
-                user_word[i] = char_user
+                for j in guessed_letters:
+                    
+                    if char_user == j:
+                        
+                        guessed = 1
+                        
+                        break
+                
+                if guessed == 1:
+                
+                    break
+
+                else:
+                    
+                    guessed_letters.append(char_user)
+
+                    corrects += 1
+                        
+                    correct = 1
+
+                    user_word[i] = char_user
             
             else:
 
@@ -122,26 +155,12 @@ def game(word):
             if iterations == len_word:
 
                 firt_for = 0
-
-        for i in user_word:
-            
-            print(i, end=' ')
         
         if corrects == len_word:
             
             print("\n\nFelicidades Ganaste")
             
             break
-
-        char_user = input("\nIntroduce una letra: ")
-        
-        if len(char_user) > 1:
-            
-            print("----------------------------------")
-            print("\n\nPor favor solo una letra\n\n")
-            print("----------------------------------")
-            
-            return game(word)
 
     print("La Palabra era: " + word)
 
